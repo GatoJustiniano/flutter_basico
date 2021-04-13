@@ -11,6 +11,7 @@ class _InputPageState extends State<InputPage> {
   String _nombre    = '';
   String _email     = '';
   String _fecha     = '';
+  DateTime _fromDate = DateTime.now();
 
   TextEditingController _inputFieldDateController = new TextEditingController();
 
@@ -35,6 +36,7 @@ class _InputPageState extends State<InputPage> {
           _crearFecha(context),
           Divider(),
           _crearPersona(),
+          Divider(),
         ],
       ),
     );
@@ -132,19 +134,19 @@ class _InputPageState extends State<InputPage> {
   }
 
   Future<void> _selectDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
-      context: context, 
-      initialDate: new DateTime.now(), 
-      firstDate: new DateTime(2018), 
-      lastDate: new DateTime(2021),
-      locale: Locale('es', 'ES')
+    final picked = await showDatePicker(
+      context: context,
+      initialDate: _fromDate,
+      firstDate: DateTime(2015, 1),
+      lastDate: DateTime(2100),
     );
-
-    if ( picked != null ) {
+    if (picked != null && picked != _fromDate) {
       setState(() {
+        _fromDate = picked;
         _fecha = picked.toString();
         _inputFieldDateController.text = _fecha;
       });
     }
   }
+  
 }
