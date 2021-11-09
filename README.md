@@ -1,6 +1,8 @@
 # flutter_base_inicial
 
 A new Flutter project.
+replantear cambios, y continuar el proyecto
+hasta terminar
 
 ## Getting Started
 
